@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Model Score Calculation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✅ CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <form id="subscriptionForm">
+    <p>Choose your preferred Offer:</p>
+
+    <div>
+      <input type="radio" id="stocks" name="assetclass" value="Stocks">
+      <label for="stocks">Offer1-Deals</label>
+    </div>
+
+    <div>
+      <input type="radio" id="bonds" name="assetclass" value="Bonds">
+      <label for="bonds">Offer2-Deals</label>
+    </div>
+
+    <div>
+      <input type="radio" id="cd" name="assetclass" value="CD">
+      <label for="cd">Offer3-Deals</label>
+    </div>
+
+    <br>
+    <button type="button" onclick="handleSubmission()">Submit Preference</button>
+  </form>
+
+  <div id="error-message" style="color:red;"></div>
+  <div id="message" style="color:green;font-weight:bold;"></div>
+
+  <!-- ✅ YOUR JS MUST LOAD FIRST -->
+  <script src="script.js"></script>
+
+  <!-- ✅ ADOBE LAUNCH MUST BE LAST -->
+  <script
+    src="https://assets.adobedtm.com/e72b4113c11a/523d00e5384d/launch-37956bbe7fae.min.js"
+    async
+  ></script>
+
+</body>
+</html>
