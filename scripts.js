@@ -46,7 +46,7 @@ function handleSubmission() {
 
   console.log("🧮 Scores:", { m1, m2, totalScore, expOfNegTotal, randEpsilon, normalizationScore });
 
-  // 5) Push event to adobeDataLayer (same as you do today), now enriched with scoring fields
+  // 5) Push event to adobeDataLayer (same as you do today), now enriched with Scoring1 fields
   window.adobeDataLayer = window.adobeDataLayer || [];
   window.adobeDataLayer.push({
     event: "assetClassSelection",
@@ -56,7 +56,7 @@ function handleSubmission() {
         Interest: {
           PreferredInterest: selectedAssetClass.value
         },
-        Scoring: {
+        Scoring1: {
           M1Score: m1,
           M2Score: m2,
           TotalScore: totalScore,
@@ -74,7 +74,7 @@ function handleSubmission() {
      xdm: {
        eventType: "offers_ready_for_decisioning",
        _accenture_partner: {
-         Scoring: { NormalizationScore: normalizationScore }
+         Scoring1: { NormalizationScore: normalizationScore }
        }
      }
    });
