@@ -1,8 +1,6 @@
 function handleSubmission() {
   const selectedAssetClass =
     document.querySelector('input[name="assetclass"]:checked');
-
-  const preferredInterest = selectedAssetClass.value;
   
   const errorMessage = document.getElementById("error-message");
   const messageBox = document.getElementById("message");
@@ -12,6 +10,8 @@ function handleSubmission() {
     messageBox.textContent = "";
     return;
   }
+
+  const preferredInterest = selectedAssetClass.value;
 
   errorMessage.textContent = "";
 
