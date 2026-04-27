@@ -2,6 +2,8 @@ function handleSubmission() {
   const selectedAssetClass =
     document.querySelector('input[name="assetclass"]:checked');
 
+  const preferredInterest = selectedAssetClass.value;
+  
   const errorMessage = document.getElementById("error-message");
   const messageBox = document.getElementById("message");
 
@@ -54,7 +56,7 @@ function handleSubmission() {
       eventType: "assetClassSelection",
       _accenture_partner: {
         Interest: {
-          PreferredInterest: selectedAssetClass.value
+          PreferredInterest: preferredInterest
         },
         Scoring1: {
           M1Score: m1,
@@ -67,17 +69,5 @@ function handleSubmission() {
       }
     }
   });
-
-  //Optional: separate event if you want to show "ready for decisioning" concept later
-  window.adobeDataLayer.push({
-     event: "offers_ready_for_decisioning",
-     xdm: {
-       eventType: "offers_ready_for_decisioning",
-       _accenture_partner: {
-         Scoring1: { NormalizationScore: normalizationScore }
-       }
-     }
-   });
-
   messageBox.textContent = `Thank you for selecting "${selectedAssetClass.value}".`;
 }
