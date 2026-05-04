@@ -43,7 +43,10 @@ function handleSubmission() {
   // 3) Persist ALL decision inputs for Page 2
   // ------------------------------------------------------------
   const decisionInputs = {
-    PreferredInterest: preferredInterest,
+                _accenture_partner: {
+        Interest: {
+          PreferredInterest: preferredInterest
+        },
     Scoring1: {
       M1Score: m1,
       M2Score: m2,
@@ -66,10 +69,6 @@ function handleSubmission() {
   window.adobeDataLayer.push({
     event: "assetClassSelection",
     xdm: {
-            _accenture_partner: {
-        Interest: {
-          PreferredInterest: preferredInterest
-        },
       eventType: "assetClassSelection",
       _accenture_partner: decisionInputs
     }
