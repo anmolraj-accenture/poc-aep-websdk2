@@ -15,17 +15,17 @@ function handleSubmission() {
   errorMessage.textContent = "";
 
   // ------------------------------------------------------------
-  // 1) Persist preference (simple value)
+  // 1) Persist preference (used as test scenario)
   // ------------------------------------------------------------
   localStorage.setItem("PreferredInterest", preferredInterest);
 
   // ------------------------------------------------------------
-  // 2) Deterministic scoring inputs (NO recompute on page 2)
+  // 2) Deterministic scoring inputs (TEST DATA)
   // ------------------------------------------------------------
   const scoreMap = {
-    Stocks: { m1: 0.85, m2: 0.45 },
-    Bonds:  { m1: 0.25, m2: 0.60 },
-    CD:     { m1: 0.10, m2: 0.15 }
+    Stocks: { m1: 0.85, m2: 0.45 }, // total = 1.30
+    Bonds:  { m1: 0.25, m2: 0.60 }, // total = 0.85
+    CD:     { m1: 0.10, m2: 0.15 }  // total = 0.25
   };
 
   const picked = scoreMap[preferredInterest] || { m1: 0.20, m2: 0.20 };
@@ -35,25 +35,26 @@ function handleSubmission() {
   const totalScore = m1 + m2;
   const expOfNegTotal = Math.exp(-totalScore);
 
-  // ✅ small random epsilon — computed ONCE only
-  const randEpsilon = Math.random() * 0.000001;
-  const normalizationScore = (0.95 / (1 + expOfNegTotal)) + randEpsilon;
+  // ✅ IMPORTANT: deterministic for testing
+  const randEpsilon = 0;
+  const normalizationScore = 0.95 / (1 + expOfNegTotal);
 
   // ------------------------------------------------------------
-  // 3) Persist ALL decision inputs for Page 2
+  // 3) Persist decision inputs for Page 2
   // ------------------------------------------------------------
   const decisionInputs = {
-                _accenture_partner: {
-        Interest: {
-          PreferredInterest: preferredInterest
-        },
-    Scoring1: {
-      M1Score: m1,
-      M2Score: m2,
-      TotalScore: totalScore,
-      ExpOfNegTotal: expOfNegTotal,
-      RandEpsilon: randEpsilon,
-      NormalizationScore: normalizationScore
+    _accenture_partner: {
+      Interest: {
+        PreferredInterest: preferredInterest
+      },
+      Scoring1: {
+        M1Score: m1,
+        M2Score: m2,
+        TotalScore: totalScore,
+        ExpOfNegTotal: expOfNegTotal,
+        RandEpsilon: randEpsilon,
+        NormalizationScore: normalizationScore
+      }
     }
   };
 
@@ -64,7 +65,7 @@ function handleSubmission() {
 
   console.log("✅ Stored AJO_DecisionInputs:", decisionInputs);
 
-  // (Optional) analytics / debugging only
+  // Optional debug event
   window.adobeDataLayer = window.adobeDataLayer || [];
   window.adobeDataLayer.push({
     event: "assetClassSelection",
