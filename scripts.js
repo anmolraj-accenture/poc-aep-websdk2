@@ -66,6 +66,10 @@ function handleSubmission() {
   window.adobeDataLayer.push({
     event: "assetClassSelection",
     xdm: {
+            _accenture_partner: {
+        Interest: {
+          PreferredInterest: preferredInterest
+        },
       eventType: "assetClassSelection",
       _accenture_partner: decisionInputs
     }
